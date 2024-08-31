@@ -17,4 +17,6 @@ public interface TaskRepo extends JpaRepository<PendingTask, Integer> {
             "LOWER(p.phone1) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
             "LOWER(p.phone2) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<PendingTask> searchTasks(String keyword);
+
+    List<PendingTask> findByNameContainingIgnoreCase(String name);
 }

@@ -78,9 +78,9 @@ public class TaskController {
     }
 
     @GetMapping("/task/search")
-    public ResponseEntity<List<PendingTask>> searchProducts(@RequestParam String keyword){
-        List<PendingTask> pendingTasks = taskService.searchTasks(keyword);
-        System.out.println("searching with " + keyword);
+    public ResponseEntity<List<PendingTask>> searchProducts(@RequestParam("search") String search){
+        List<PendingTask> pendingTasks = taskService.searchTasks(search);
+
         return new ResponseEntity<>(pendingTasks, HttpStatus.OK);
     }
 }
