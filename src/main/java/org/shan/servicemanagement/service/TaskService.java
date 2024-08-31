@@ -4,6 +4,7 @@ import org.shan.servicemanagement.dto.TaskDto;
 import org.shan.servicemanagement.entity.PendingTask;
 import org.shan.servicemanagement.repo.TaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public class TaskService {
 
     public List<PendingTask> getAllTasks() {
         return taskRepo.findAll();
+    }
+
+    public List<PendingTask> getAllTasksSorted(String field){
+        return taskRepo.findAll(Sort.by(Sort.Direction.DESC,field));
     }
 
     public PendingTask getTaskById(int id) {

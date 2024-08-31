@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/complaint")
+//@RequestMapping("/complaint")
 public class TaskController {
 
     @Autowired
@@ -42,6 +42,11 @@ public class TaskController {
     @GetMapping("/task")
     public ResponseEntity<List<PendingTask>> getAllTasks() {
         return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
+    }
+
+    @GetMapping("/task/sort/{field}")
+    public ResponseEntity<List<PendingTask>> getAllTasksSorted(@PathVariable String field) {
+        return new ResponseEntity<>(taskService.getAllTasksSorted(field), HttpStatus.OK);
     }
 
     @GetMapping("/task/{id}")
