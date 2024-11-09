@@ -19,4 +19,7 @@ public interface TaskRepo extends JpaRepository<PendingTask, Integer> {
     List<PendingTask> searchTasks(String keyword);
 
     List<PendingTask> findByNameContainingIgnoreCase(String name);
+
+    @Query("SELECT COUNT(*) from PendingTask WHERE solved=false")
+    Long countTask();
 }

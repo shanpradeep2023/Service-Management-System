@@ -41,12 +41,20 @@ public class TaskController {
 
     @GetMapping("/task")
     public ResponseEntity<List<PendingTask>> getAllTasks() {
-        return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/task/sort/{field}")
     public ResponseEntity<List<PendingTask>> getAllTasksSorted(@PathVariable String field) {
-        return new ResponseEntity<>(taskService.getAllTasksSorted(field), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(taskService.getAllTasksSorted(field), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/task/{id}")
@@ -87,5 +95,14 @@ public class TaskController {
         List<PendingTask> pendingTasks = taskService.searchTasks(search);
 
         return new ResponseEntity<>(pendingTasks, HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> countTasks() {
+        try {
+            return new ResponseEntity<>(taskService.countTasks(),HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

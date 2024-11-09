@@ -5,6 +5,7 @@ import org.shan.servicemanagement.entity.PendingTask;
 import org.shan.servicemanagement.repo.TaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,5 +57,9 @@ public class TaskService {
 
     public List<PendingTask> searchTasks(String keyword) {
         return taskRepo.searchTasks(keyword);
+    }
+
+    public Long countTasks() {
+        return taskRepo.countTask();
     }
 }
